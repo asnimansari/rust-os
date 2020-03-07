@@ -16,10 +16,10 @@ pub extern "C" fn _start() -> ! {
 
     // let vga_buffer = 0xb8000 as *mut u8;
 
-    use core::fmt::Write;
-    vga_buffer::WRITER.lock().write_str("Hello Again").unwrap();
-    write!(vga_buffer::WRITER.lock()," , some number: {} {}", 42,1.337).unwrap();
 
+    println!("Hello WOrld {}", "!");
+
+    panic!("The is a test panic message");
 
     loop {}
 }
@@ -27,6 +27,7 @@ pub extern "C" fn _start() -> ! {
 /// This function is called on panic.
 #[panic_handler]
 fn panic(_info: &PanicInfo) -> ! {
+    println!("{}", _info);
     loop {}
 }
 
